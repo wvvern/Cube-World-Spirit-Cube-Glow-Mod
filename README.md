@@ -1,6 +1,6 @@
 # Cube-World-Spirit-Cube-Glow-Mod
 
-For use with the Cube World Mod Launcher: https://github.com/ChrisMiuchiz/Cube-World-Mod-Launcher
+For use with the Cube World Mod Launcher: https://github.com/ChrisMiuchiz/Cube-World-Mod-Launcher/releases/tag/v1.5
 
 ## In-game chat controls:
 ```
