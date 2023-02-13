@@ -81,7 +81,7 @@ extern "C" __declspec(dllexport) bool APIENTRY DllMain(HINSTANCE hinstDLL, DWORD
 		WriteJMP((BYTE*)(base + 0xB0186), (BYTE*)&CubeGlowInjection);
 
 		WriteNOPS((BYTE*)(base + 0x188394), 5); // disables consumption of spirit cubes when placed on an item
-		WriteByte((BYTE*)(base + 0xC6A48), 0x20); // disables 16 spirit cube limit on dual wield weapons (set to max of 32)
+		WriteByte((BYTE*)(base + 0xC6A48), 0x20); // increases spirit cube limit to 32 on dual wield weapons
 
 		CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)RegisterCallbacks, 0, 0, NULL);
 		break;
