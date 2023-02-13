@@ -37,12 +37,19 @@ void WriteJMP(BYTE* location, BYTE* newFunction) {
 	VirtualProtect(location, 5, dwOldProtection, &dwOldProtection);
 }
 
-void WriteBytes(BYTE* location, BYTE bytes[], int size) {
+void WriteByte(BYTE* location, BYTE byte) {
 	DWORD dwOldProtection;
-	VirtualProtect(location, size, PAGE_EXECUTE_READWRITE, &dwOldProtection);
-	for (int i = 0; i < size; i++)
-		location[i] = bytes[i];
-	VirtualProtect(location, size, dwOldProtection, &dwOldProtection);
+	VirtualProtect(location, 1, PAGE_EXECUTE_READWRITE, &dwOldProtection);
+	location[0] = byte;
+	VirtualProtect(location, 1, dwOldProtection, &dwOldProtection);
+}
+
+void WriteNOPS(BYTE* location, int nopCount) {
+	DWORD dwOldProtection;
+	VirtualProtect(location, nopCount, PAGE_EXECUTE_READWRITE, &dwOldProtection);
+	for (int i = 0; i < nopCount; i++)
+		location[i] = 0x90; // nop
+	VirtualProtect(location, nopCount, dwOldProtection, &dwOldProtection);
 }
 
 bool __stdcall HandleChatEvent(wchar_t msg[], unsigned int msg_size) {
@@ -72,10 +79,10 @@ extern "C" __declspec(dllexport) bool APIENTRY DllMain(HINSTANCE hinstDLL, DWORD
 		WriteJMP((BYTE*)(base + 0xB5DB7), (BYTE*)&CubeGammaInjection);
 		CubeGlowInjection_JMP_back = base + 0xB018B;
 		WriteJMP((BYTE*)(base + 0xB0186), (BYTE*)&CubeGlowInjection);
-		BYTE unlimitedSpiritCubes[] = { 0x90, 0x90, 0x90, 0x90, 0x90 }; // nop out call to item count dec func
-		WriteBytes((BYTE*)(base + 0x188394), unlimitedSpiritCubes, 5);
-		BYTE disable16SpiritCubeLimit[] = { 0x20 }; // flip byte representing limit from 16 to 32 (true max)
-		WriteBytes((BYTE*)(base + 0xC6A48), disable16SpiritCubeLimit, 1);
+
+		WriteNOPS((BYTE*)(base + 0x188394), 5); // disables consumption of spirit cubes when placed on an item
+		WriteByte((BYTE*)(base + 0xC6A48), 0x20); // disables 16 spirit cube limit on dual wield weapons (set to max of 32)
+
 		CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)RegisterCallbacks, 0, 0, NULL);
 		break;
 	}
