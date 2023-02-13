@@ -2,6 +2,12 @@
 
 For use with the [Cube World Mod Launcher](https://github.com/ChrisMiuchiz/Cube-World-Mod-Launcher/releases/tag/v1.5). 
 
+## Features:
+
+- Independent glow and gamma controls for how spirit cubes appear in-game
+- Disables consumption of spirit cubes when placed on an item
+- Disables 16 spirit cube limit on dual wield weapons
+
 ## In-game chat controls:
 ```
 /gamma <value>
