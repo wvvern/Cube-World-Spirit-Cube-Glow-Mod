@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="42">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"Spirit Glow (July 13th Release, CW Modloader)"</Description>
+      <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+globalalloc(newmem,8)
+label(gamma)
+label(glow)
+registersymbol(gamma)
+registersymbol(glow)
+
+newmem:
+// change default values here
+gamma:
+  dd #30
+glow:
+  dd #40
+
+[DISABLE]
+
+unregistersymbol(gamma)
+unregistersymbol(glow)
+dealloc(newmem)
+
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>542</ID>
+          <Description>"Cube Gamma"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+define(iGamma,Cube.exe+B5DB7)
+registersymbol(iGamma)
+alloc(mGamma,$100,iGamma)
+
+mGamma:
+  push ebx
+  mov ebx,[gamma]
+  movd xmm0,ebx
+  pop ebx
+//movd xmm0,[esi+70]
+  jmp return
+
+iGamma:
+  jmp mGamma
+return:
+
+[DISABLE]
+
+iGamma:
+  db 66 0F 6E 46 70
+unregistersymbol(iGamma)
+dealloc(mGamma)
+
+
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>543</ID>
+              <Description>"Gamma Value"</Description>
+              <LastState Value="30" RealAddress="01590000"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>gamma</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>18</ID>
+          <Description>"Cube Glow"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+define(iGlow,Cube.exe+B0186)
+registersymbol(iGlow)
+alloc(mGlow,$100,iGlow)
+
+mGlow:
+  push ebx
+  mov ebx,[glow]
+  movd xmm0,ebx
+  pop ebx
+//movd xmm0,[ecx+70]
+  jmp return
+
+iGlow:
+  jmp mGlow
+return:
+
+[DISABLE]
+
+iGlow:
+  db 66 0F 6E 41 70
+unregistersymbol(iGlow)
+dealloc(mGlow)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>15</ID>
+              <Description>"Glow Value"</Description>
+              <LastState Value="40" RealAddress="01590004"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>glow</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>21</ID>
+          <Description>"Cheats"</Description>
+          <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>562</ID>
+              <Description>"Bypass 16 Cube Limit"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+
+Cube.exe+C6A48:
+db 20
+
+[DISABLE]
+
+Cube.exe+C6A48:
+db 10
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>552</ID>
+              <Description>"Infinite Spirits &amp; Items"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+
+Cube.exe+2F140:
+  db 90 90
+
+[DISABLE]
+
+Cube.exe+2F140:
+  db FF 09
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>545</ID>
+              <Description>"Infinite Consumables"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+
+Cube.exe+A2840:
+  db 90 90
+
+[DISABLE]
+
+Cube.exe+A2840:
+  db FF 0E
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>548</ID>
+              <Description>"Infinite Pet Water"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+
+Cube.exe+21941A:
+  db C7 86 98 11 00 00 00 00 80 3F 90 90
+
+[DISABLE]
+
+Cube.exe+21941A:
+  db F3 0F 5C C1 F3 0F 11 86 98 11 00 00
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>550</ID>
+              <Description>"Instant Crafting"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+
+Cube.exe+8F216:
+  db 90 90
+
+[DISABLE]
+
+Cube.exe+8F216:
+  db 72 11
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>553</ID>
+      <Description>"Spirit Glow (July 2nd Release, Glider Glitch)"</Description>
+      <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+globalalloc(newmem,8)
+label(gamma)
+label(glow)
+registersymbol(gamma)
+registersymbol(glow)
+
+newmem:
+// change default values here
+gamma:
+  dd #30
+glow:
+  dd #40
+
+[DISABLE]
+
+unregistersymbol(gamma)
+unregistersymbol(glow)
+dealloc(newmem)
+
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>554</ID>
+          <Description>"Cube Gamma"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+define(iGamma,Cube.exe+B5D97)
+registersymbol(iGamma)
+alloc(mGamma,$100,iGamma)
+
+mGamma:
+  push ebx
+  mov ebx,[gamma]
+  movd xmm0,ebx
+  pop ebx
+//movd xmm0,[esi+70]
+  jmp return
+
+iGamma:
+  jmp mGamma
+return:
+
+[DISABLE]
+
+iGamma:
+  db 66 0F 6E 46 70
+unregistersymbol(iGamma)
+dealloc(mGamma)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>555</ID>
+              <Description>"Gamma Value"</Description>
+              <LastState Value="30" RealAddress="01590000"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>gamma</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>556</ID>
+          <Description>"Cube Glow"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+define(iGlow,Cube.exe+B0166)
+registersymbol(iGlow)
+alloc(mGlow,$100,iGlow)
+
+mGlow:
+  push ebx
+  mov ebx,[glow]
+  movd xmm0,ebx
+  pop ebx
+//movd xmm0,[ecx+70]
+  jmp return
+
+iGlow:
+  jmp mGlow
+return:
+
+[DISABLE]
+
+iGlow:
+  db 66 0F 6E 41 70
+unregistersymbol(iGlow)
+dealloc(mGlow)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>557</ID>
+              <Description>"Glow Value"</Description>
+              <LastState Value="40" RealAddress="01590004"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>008000</Color>
+              <VariableType>4 Bytes</VariableType>
+              <Address>glow</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>558</ID>
+          <Description>"Cheats"</Description>
+          <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>564</ID>
+              <Description>"Bypass 16 Cube Limit"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+
+Cube.exe+C6988:
+db 20
+
+[DISABLE]
+
+Cube.exe+C6988:
+db 10
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>547</ID>
+              <Description>"Infinite Spirits &amp; Items"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+
+Cube.exe+2F920:
+  db 90 90
+
+[DISABLE]
+
+Cube.exe+2F920:
+  db FF 09
+
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>559</ID>
+              <Description>"Infinite Consumables"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+
+Cube.exe+A2A00:
+  db 90 90
+
+[DISABLE]
+
+Cube.exe+A2A00:
+  db FF 0E
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>560</ID>
+              <Description>"Infinite Pet Water"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+
+Cube.exe+217CE2:
+  db c7 86 98 11 00 00 00 00 80 3f 90 90
+
+[DISABLE]
+
+Cube.exe+217CE2:
+  db f3 0f 5c c1 f3 0f 11 86 98 11 00 00
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>535</ID>
+              <Description>"Instant Crafting"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+
+Cube.exe+8F426:
+  db 90 90
+
+[DISABLE]
+
+Cube.exe+8F426:
+  db 72 11
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols>
+    <SymbolEntry>
+      <Name>newmem</Name>
+      <Address>01590000</Address>
+    </SymbolEntry>
+  </UserdefinedSymbols>
+</CheatTable>
